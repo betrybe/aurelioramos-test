@@ -90,11 +90,23 @@ function createProductItem(products, productsSection) {
   });
 }
 
+function createLoading() {
+  const loading = createCustomElement('progress', 'loading', 'loading...');  
+  document.body.appendChild(loading);
+}
+
+function removeLoading() {  
+  const loading = document.querySelector('.loading');  
+  document.body.removeChild(loading);
+}
+
 const fetchProducts = () => {
+  createLoading();
   const productsSection = document.querySelector('.items');  
   fetch(API_URL_PRODUCTS, options)
     .then((response) => response.json())
-    .then((data) => {       
+    .then((data) => {  
+      removeLoading();     
       createProductItem(data.results, productsSection);
     });    
 };
