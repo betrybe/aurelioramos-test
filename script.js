@@ -111,6 +111,11 @@ const fetchProducts = () => {
     });    
 };
 
+function emptyCart() {
+  document.querySelector('.cart__items').textContent = ''; 
+}
+
 window.onload = () => { 
   fetchProducts();
+  document.querySelector('.empty-cart').addEventListener('click', emptyCart);
 };
